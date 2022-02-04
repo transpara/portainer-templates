@@ -54,9 +54,6 @@
             "ports": ["5435:5432"],
             "restart_policy": "unless-stopped",
             "registry": "docker.io"
-        },
-        {
-            // template2
         }
     ]
 }
