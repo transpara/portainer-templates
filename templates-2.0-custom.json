@@ -58,7 +58,8 @@
             "hostname": "tstore",
             "ports": ["5435:5432"],
             "restart_policy": "unless-stopped",
-            "registry": "docker.io"
+            "registry": "docker.io",
+            "network": "transpara"
         }
     ]
 }
