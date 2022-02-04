@@ -1,0 +1,61 @@
+{
+    "version": "2",
+    "templates": [
+        {
+            "type": 1,
+            "title": "tstore",
+            "description": "tstore image of Transpara",
+            "categories": [
+                "server manager"
+            ],
+            "platform": "linux",
+            "logo": "https://pbs.twimg.com/profile_images/1132790832728117248/TI3MdP1j_400x400.png",
+            "image": "transpara/portainer_tstore:latest",
+            "volumes": [
+                {
+                    "container": "/transpara/tstore_data",
+                    "bind": "/var/lib/postgresql/data"
+                }
+            ],
+            "env": [
+                {
+                    "name": "POSTGRES_DB",
+                    "label": "POSTGRES_DB",
+                    "description": "POSTGRES_DB",
+                    "default": "postgres"
+                },
+                {
+                    "name": "POSTGRES_USER",
+                    "label": "POSTGRES_USER",
+                    "description": "POSTGRES_USER",
+                    "default": "postgres"
+                },
+                {
+                    "name": "POSTGRES_PASSWORD",
+                    "label": "POSTGRES_PASSWORD",
+                    "description": "POSTGRES_PASSWORD",
+                    "default": "BorgGoesLive!22"
+                },
+                {
+                    "name": "PGDATA",
+                    "label": "PGDATA",
+                    "description": "PGDATA",
+                    "default": "/var/lib/postgresql/data"
+                },
+                {
+                    "name": "PGPORT",
+                    "label": "PGPORT",
+                    "description": "PGPORT",
+                    "default": "5432"
+                }
+            ],
+            "name": "tstore",
+            "hostname": "tstpre",
+            "ports": ["5435:5432"],
+            "restart_policy": "unless-stopped"
+        },
+        {
+            // template2
+        }
+    ]
+}
