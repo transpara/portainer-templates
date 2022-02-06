@@ -89,6 +89,107 @@
             "restart_policy": "unless-stopped",
             "registry": "docker.io",
             "network": "transpara"
+        },
+        {
+            "type": 1,
+            "title": "promscale",
+            "description": "promscale image from Transpara",
+            "categories": [
+                "server manager"
+            ],
+            "platform": "linux",
+            "logo": "https://pbs.twimg.com/profile_images/1132790832728117248/TI3MdP1j_400x400.png",
+            "image": "transpara/portainer_promscale:latest",
+            "command": "-enable-feature=tracing -otlp-grpc-server-listen-address=:9202",          
+            "name": "promscale",
+            "hostname": "promscale",
+            "ports": [
+                "9201:9201",
+                "9202:9202"
+            ],
+            "restart_policy": "unless-stopped",
+            "env": [
+                {
+                    "name": "PROMSCALE_DB_CONNECT_RETRIES",
+                    "label": "PROMSCALE_DB_CONNECT_RETRIES",
+                    "description": "PROMSCALE_DB_CONNECT_RETRIES",
+                    "default": "10",
+                    "preset": true
+                },
+                {
+                    "name": "PROMSCALE_WEB_TELEMETRY_PATH",
+                    "label": "PROMSCALE_WEB_TELEMETRY_PATH",
+                    "description": "PROMSCALE_WEB_TELEMETRY_PATH",
+                    "default": "/metrics-text",
+                    "preset": true
+                },
+                {
+                    "name": "PROMSCALE_DB_URI",
+                    "label": "PROMSCALE_DB_URI",
+                    "description": "PROMSCALE_DB_URI",
+                    "default": "postgres://transpara:BorgGoesLive!22@tstore:5432/transpara?sslmode=allow",
+                    "preset": true
+                }
+            ],
+            "registry": "docker.io",
+            "network": "transpara"
+        },
+        {
+            "type": 1,
+            "title": "tstore-api",
+            "description": "tstore-api image from Transpara",
+            "categories": [
+                "server manager"
+            ],
+            "platform": "linux",
+            "logo": "https://pbs.twimg.com/profile_images/1132790832728117248/TI3MdP1j_400x400.png",
+            "image": "transpara/portainer_tstore-api:latest",       
+            "name": "tstore-api",
+            "hostname": "tstore-api",
+            "ports": [
+                "10001:80"
+            ],
+            "restart_policy": "unless-stopped",
+            "env": [
+                {
+                    "name": "PROMSCALE_DB_URI=postgresql",
+                    "label": "PROMSCALE_DB_URI=postgresql",
+                    "description": "PROMSCALE_DB_URI=postgresql",
+                    "default": "//transpara:BorgGoesLive!22@tstore:5432/transpara",
+                    "preset": true
+                },
+                {
+                    "name": "PROMSCALE_API_URI",
+                    "label": "PROMSCALE_API_URI",
+                    "description": "PROMSCALE_API_URI",
+                    "default": "http://promscale:9201/write",
+                    "preset": true
+                },
+                {
+                    "name": "PROMSCALE_OTLP_URI",
+                    "label": "PROMSCALE_OTLP_URI",
+                    "description": "PROMSCALE_OTLP_URI",
+                    "default": "http://promscale:9202",
+                    "preset": true
+                },
+                {
+                    "name": "EXPOSE_METRICS",
+                    "label": "EXPOSE_METRICS",
+                    "description": "EXPOSE_METRICS",
+                    "default": "True",
+                    "preset": true
+                }
+                ,
+                {
+                    "name": "EXPORT_TRACES",
+                    "label": "EXPORT_TRACES",
+                    "description": "EXPORT_TRACES",
+                    "default": "True",
+                    "preset": true
+                }
+            ],
+            "registry": "docker.io",
+            "network": "transpara"
         }
     ]
 }
