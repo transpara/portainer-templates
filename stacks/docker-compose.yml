@@ -15,7 +15,7 @@ services:
 
   tstore:
     
-    image: transpara/portainer_tstore:latest
+    image: docker.io/transpara/portainer_tstore:latest
     shm_size: '2gb'
     volumes:
       - /transpara/tstore_data:/var/lib/postgresql/data
@@ -59,7 +59,7 @@ services:
 
   tstore-api:
     # for the release, uncomment the image and comment the build, copy the compose file into release folder
-    image: transpara/portainer_tstore-api:latest
+    image: docker.io/transpara/portainer_tstore-api:latest
     #build: ./tstoreAPI
     environment:
       - PROMSCALE_DB_URI=postgresql://transpara:BorgGoesLive!22@tstore:5432/transpara

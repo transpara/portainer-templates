@@ -3,6 +3,33 @@
     "templates": [
         {
             "type": 1,
+            "title": "syslog",
+            "description": "syslog image from Transpara",
+            "categories": [
+                "server manager"
+            ],
+            "platform": "linux",
+            "logo": "https://pbs.twimg.com/profile_images/1132790832728117248/TI3MdP1j_400x400.png",
+            "image": "balabit/syslog-ng:latest",
+            "volumes": [
+                {
+                    "container": "/var/log",
+                    "bind": "/transpara/logs"
+                }
+            ],
+            "command": "--no-caps",
+            "name": "syslog",
+            "hostname": "syslog",
+            "ports": [
+                "514:514/udp",
+                "601:601"
+            ],
+            "restart_policy": "unless-stopped",
+            "registry": "docker.io",
+            "network": "transpara"
+        },
+        {
+            "type": 1,
             "title": "tstore",
             "description": "tstore image from Transpara",
             "categories": [
@@ -65,33 +92,6 @@
         },
         {
             "type": 1,
-            "title": "syslog",
-            "description": "syslog image from Transpara",
-            "categories": [
-                "server manager"
-            ],
-            "platform": "linux",
-            "logo": "https://pbs.twimg.com/profile_images/1132790832728117248/TI3MdP1j_400x400.png",
-            "image": "transpara/portainer_syslog:latest",
-            "volumes": [
-                {
-                    "container": "/var/log",
-                    "bind": "/transpara/logs"
-                }
-            ],
-            "command": "--no-caps",              
-            "name": "syslog",
-            "hostname": "syslog",
-            "ports": [
-                "514:514/udp",
-                "601:601"
-            ],
-            "restart_policy": "unless-stopped",
-            "registry": "docker.io",
-            "network": "transpara"
-        },
-        {
-            "type": 1,
             "title": "promscale",
             "description": "promscale image from Transpara",
             "categories": [
@@ -100,7 +100,7 @@
             "platform": "linux",
             "logo": "https://pbs.twimg.com/profile_images/1132790832728117248/TI3MdP1j_400x400.png",
             "image": "transpara/portainer_promscale:latest",
-            "command": "-enable-feature=tracing -otlp-grpc-server-listen-address=:9202",          
+            "command": "-enable-feature=tracing -otlp-grpc-server-listen-address=:9202",
             "name": "promscale",
             "hostname": "promscale",
             "ports": [
@@ -143,7 +143,7 @@
             ],
             "platform": "linux",
             "logo": "https://pbs.twimg.com/profile_images/1132790832728117248/TI3MdP1j_400x400.png",
-            "image": "transpara/portainer_tstore-api:latest",       
+            "image": "transpara/portainer_tstore-api:latest",
             "name": "tstore-api",
             "hostname": "tstore-api",
             "ports": [
@@ -178,8 +178,7 @@
                     "description": "EXPOSE_METRICS",
                     "default": "True",
                     "preset": true
-                }
-                ,
+                },
                 {
                     "name": "EXPORT_TRACES",
                     "label": "EXPORT_TRACES",
@@ -192,23 +191,20 @@
             "network": "transpara"
         },
         {
-			"type":3,
-			"title":"tstore stack",
-			"description":"tstore stack from Transpara",
-			"note":"Deploys tstore from Transpara",
-			"categories":[
-				"server manager"
-			],
-			"platform":"linux",
+            "type": 3,
+            "title": "tstore stack",
+            "description": "tstore stack from Transpara",
+            "note": "Deploys tstore from Transpara",
+            "categories": [
+                "server manager"
+            ],
+            "platform": "linux",
             "registry": "docker.io",
-			"logo":"https://pbs.twimg.com/profile_images/1132790832728117248/TI3MdP1j_400x400.png",
-			"repository":{
-				"referencename": "refs/heads/main",
-                "url":"https://github.com/transpara/portainer-templates",
-                
-				"stackfile":"stacks/docker-compose.yml"
-			}
-            
-		}
+            "logo": "https://pbs.twimg.com/profile_images/1132790832728117248/TI3MdP1j_400x400.png",
+            "repository": {
+                "url": "https://github.com/transpara/portainer-templates",
+                "stackfile": "stacks/docker-compose.yml"
+            }
+        }
     ]
 }
