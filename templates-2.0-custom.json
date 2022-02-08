@@ -13,7 +13,7 @@
 			"logo":"https://pbs.twimg.com/profile_images/1132790832728117248/TI3MdP1j_400x400.png",
 			"repository":{
 				"url":"https://github.com/transpara/portainer-templates",
-				"stackfile":"docker-compose.yml"
+				"stackfile":"/docker-compose.yml"
 			},
             "registry": "docker.io"
 		},
