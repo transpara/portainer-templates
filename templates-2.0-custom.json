@@ -2,6 +2,22 @@
     "version": "2",
     "templates": [
         {
+            "type": 3,
+            "title": "tstore stack",
+            "description": "tstore stack from Transpara",
+            "note": "Deploys tstore from Transpara",
+            "categories": [
+                "server manager"
+            ],
+            "platform": "linux",
+            "registry": "docker.io",
+            "logo": "https://pbs.twimg.com/profile_images/1132790832728117248/TI3MdP1j_400x400.png",
+            "repository": {
+                "url": "https://github.com/transpara/portainer-templates",
+                "stackfile": "stacks/tstore/docker-compose.yml"
+            }
+        },
+        {
             "type": 1,
             "title": "syslog",
             "description": "syslog image from Transpara",
@@ -189,22 +205,6 @@
             ],
             "registry": "docker.io",
             "network": "transpara"
-        },
-        {
-            "type": 3,
-            "title": "tstore stack",
-            "description": "tstore stack from Transpara",
-            "note": "Deploys tstore from Transpara",
-            "categories": [
-                "server manager"
-            ],
-            "platform": "linux",
-            "registry": "docker.io",
-            "logo": "https://pbs.twimg.com/profile_images/1132790832728117248/TI3MdP1j_400x400.png",
-            "repository": {
-                "url": "https://github.com/transpara/portainer-templates",
-                "stackfile": "stacks/tstore/docker-compose.yml"
-            }
         }
     ]
 }
