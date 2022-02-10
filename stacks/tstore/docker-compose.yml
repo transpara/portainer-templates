@@ -14,7 +14,7 @@ services:
     command: "--no-caps"
 
   tstore:
-    image: docker.io/transpara/portainer_tstore:latest
+    image: docker.io/transpara/tstore-database:v6.0.0.11-pg14.1-ts2.5.1-tk1.4
     shm_size: '2gb'
     volumes:
       - /transpara/tstore_data:/var/lib/postgresql/data
