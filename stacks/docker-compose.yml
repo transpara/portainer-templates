@@ -1,5 +1,5 @@
 version: "3.9"
-   
+
 services:
   syslog:
     image: balabit/syslog-ng:latest
@@ -14,7 +14,6 @@ services:
     command: "--no-caps"
 
   tstore:
-    
     image: docker.io/transpara/portainer_tstore:latest
     shm_size: '2gb'
     volumes:
@@ -30,32 +29,32 @@ services:
     ports:
       - "5435:5432"
     restart: unless-stopped
-    logging: 
+    logging:
       driver: syslog
       options:
         syslog-address: "udp://localhost:514"
         syslog-format: "rfc3164"
         tag: "node-tstore"
-  
+
   promscale:
     image: timescale/promscale:latest
     command: '-enable-feature=tracing -otlp-grpc-server-listen-address=:9202'
     ports:
       - "9201:9201"
-      - "9202:9202"      
+      - "9202:9202"
     container_name: promscale
     hostname: promscale
-    restart: unless-stopped 
+    restart: unless-stopped
     environment:
       PROMSCALE_DB_CONNECT_RETRIES: 10
       PROMSCALE_WEB_TELEMETRY_PATH: /metrics-text
-      PROMSCALE_DB_URI: postgres://transpara:BorgGoesLive!22@tstore:5432/transpara?sslmode=allow 
-    logging: 
+      PROMSCALE_DB_URI: postgres://transpara:BorgGoesLive!22@tstore:5432/transpara?sslmode=allow
+    logging:
       driver: syslog
       options:
         syslog-address: "udp://localhost:514"
         syslog-format: "rfc3164"
-        tag: "node-promscale"     
+        tag: "node-promscale"
 
   tstore-api:
     # for the release, uncomment the image and comment the build, copy the compose file into release folder
@@ -72,13 +71,13 @@ services:
     ports:
       - "10001:80"
     restart: unless-stopped
-    logging: 
+    logging:
       driver: syslog
       options:
         syslog-address: "udp://localhost:514"
         syslog-format: "rfc3164"
         tag: "node-tstore-api"
-  
+
 networks:
-   default:
-      name: transpara
+  default:
+    name: transpara
