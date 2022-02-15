@@ -37,7 +37,7 @@ services:
         tag: "node-tstore"
 
   promscale:
-    image: timescale/promscale:latest
+    image: timescale/promscale:0.7.1
     command: '-enable-feature=tracing -otlp-grpc-server-listen-address=:9202'
     ports:
       - "9201:9201"
