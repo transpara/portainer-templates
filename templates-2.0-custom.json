@@ -108,6 +108,49 @@
         },
         {
             "type": 1,
+            "title": "Glances Transpara",
+            "description": "Glances monitoring tool",
+            "categories": [
+                "server manager"
+            ],
+            "platform": "linux",
+            "logo": "https://nicolargo.github.io/glances/public/images/glances.png",
+            "image": "transpara/glances:latest",
+            "name": "glances",
+            "hostname": "glances-ubuntu3",
+            "ports": [
+                "9201:9201",
+                "9202:9202"
+            ],
+            "restart_policy": "unless-stopped",
+            "env": [
+                {
+                    "name": "PROMSCALE_DB_CONNECT_RETRIES",
+                    "label": "PROMSCALE_DB_CONNECT_RETRIES",
+                    "description": "PROMSCALE_DB_CONNECT_RETRIES",
+                    "default": "10",
+                    "preset": true
+                },
+                {
+                    "name": "PROMSCALE_WEB_TELEMETRY_PATH",
+                    "label": "PROMSCALE_WEB_TELEMETRY_PATH",
+                    "description": "PROMSCALE_WEB_TELEMETRY_PATH",
+                    "default": "/metrics-text",
+                    "preset": true
+                },
+                {
+                    "name": "PROMSCALE_DB_URI",
+                    "label": "PROMSCALE_DB_URI",
+                    "description": "PROMSCALE_DB_URI",
+                    "default": "postgres://transpara:BorgGoesLive!22@tstore:5432/transpara?sslmode=allow",
+                    "preset": true
+                }
+            ],
+            "registry": "docker.io",
+            "network": "transpara"
+        },
+        {
+            "type": 1,
             "title": "promscale",
             "description": "promscale image from Transpara",
             "categories": [
@@ -159,7 +202,7 @@
             ],
             "platform": "linux",
             "logo": "https://pbs.twimg.com/profile_images/1132790832728117248/TI3MdP1j_400x400.png",
-            "image": "transpara/portainer_tstore-api:latest",
+            "image": "transpara/tstore-api:latest",
             "name": "tstore-api",
             "hostname": "tstore-api",
             "ports": [
