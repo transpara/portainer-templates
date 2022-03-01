@@ -57,7 +57,7 @@ services:
         tag: "node-promscale"
 
   tstore-api:
-    image: docker.io/transpara/tstore-api:latest
+    image: docker.io/transpara/portainer_tstore-api
     environment:
       - PROMSCALE_DB_URI=postgresql://transpara:BorgGoesLive!22@tstore:5432/transpara
       - PROMSCALE_API_URI=http://promscale:9201/write
